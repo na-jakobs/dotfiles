@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+alias sed=/opt/homebrew/bin/gsed
+alias grep=/opt/homebrew/bin/ggrep
+
+# single character aliases
+alias l=ls
+alias g=git
+
+# mask built-ins with better defaults
+alias vi=vim
+alias cat=bat
+
+alias -g ...='../..'
+alias -g ....='../../..'
+
+alias ls="eza --icons --hyperlink --color"
+alias ll="eza --long --no-user --icons --git --hyperlink --color"
+alias lt="eza --long --no-user --icons --git --hyperlink --color --tree"
+alias la="eza --long --no-user --icons --git --hyperlink --color --all"
+alias ldot='eza -ld .*'
+
+# fix common typos
+alias quit='exit'
+#alias cd..='cd ..'
+alias cd="z"
+
+# tar
+alias tarls="tar -tvf"
+alias untar="tar -xf"
+
+# misc
+alias zaliases='${EDITOR:-nvim} "${ZDOTDIR:-$HOME}"/.aliases'
+alias zshrc='${EDITOR:-nvim} "${ZDOTDIR:-$HOME}"/.zshrc'
+alias zprofile='${EDITOR:-nvim} "${ZDOTDIR:-$HOME}"/.zprofile'
+alias zdot='cd ${ZDOTDIR:-~}'
+
+# github
+alias defaultbranch='gh repo view --json defaultBranchRef --jq .defaultBranchRef.name'
+
+# git
+# ff-only
+alias ff="git pull --ff-only --recurse-submodules=on-demand"
+# for annotated tags
+alias tags-annotated='git tag -l -n100 --sort=-taggerdate'
+# for lightweight tags
+alias tags-lightweight='git tag -l -n100 --sort=-creatordate'
+alias tags='git tag --sort=-creatordate --format="%(color:bold cyan)== %(refname:short) ==%(if)%(object)%(then)%0aTag Hash: %(objectname)%0aTag Date: %(taggerdate:iso-local)%0a  Commit: %(object) %0a%0a%(contents)%(else)%0a(lightweight tag)%0a  Commit: %(objectname)%(end)%0a"'
+alias tagsd="git log --date-order --graph --tags --simplify-by-decoration --pretty=format:'%ai %h %d' --all"
+alias tagsall='git for-each-ref --format "%(refname) %09 %(taggerdate) %(subject) %(taggeremail) %09 sha:%(objectname:short)" refs/tags  --sort=taggerdate'
+# open yaml files with nvim
+alias -s {yml,yaml}=nvim
+
+# create github pr and open web browser
+alias pr="gh pr create --fill | tee >(pbcopy) | xargs open"
+alias pr2311="gh pr create --base 2311 --fill | tee >(pbcopy) | xargs open"
+
+alias k="kubectl"
+alias g="git"
+alias gvv="git status -vv"
+
+alias brewlist="brew leaves | xargs brew desc --eval-all"
+alias brewcasks="brew ls --casks | xargs brew desc --eval-all"

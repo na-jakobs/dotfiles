@@ -1,0 +1,12 @@
+*history*
+*sessions*
+*cache*
+*tokens*
+*dump*
+.zcompdump
+.tokens
+.zsh_history
+.zsh_sessions/
+.zsh_sessions
+.zcompcache/
+
